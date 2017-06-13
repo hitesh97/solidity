@@ -630,6 +630,14 @@ BOOST_AUTO_TEST_CASE(create2)
 	BOOST_CHECK(successAssemble("{ pop(create2(10, 0x123, 32, 64)) }"));
 }
 
+BOOST_AUTO_TEST_CASE(jump_warning)
+{
+	CHECK_ASSEMBLE_ERROR("{ jump }", Warning, "Using jumps requires stack adjustments when working with variables.");
+	CHECK_ASSEMBLE_ERROR("{ jumpi }", Warning, "Using jumps requires stack adjustments when working with variables.");
+	CHECK_ASSEMBLE_ERROR("{ a: jump(a) }", Warning, "Using jumps requires stack adjustments when working with variables.");
+	CHECK_ASSEMBLE_ERROR("{ a: jumpi(a) }", Warning, "Using jumps requires stack adjustments when working with variables.");
+}
+
 BOOST_AUTO_TEST_SUITE_END()
 
 BOOST_AUTO_TEST_SUITE_END()
