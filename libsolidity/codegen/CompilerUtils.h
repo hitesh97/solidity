@@ -110,6 +110,7 @@ public:
 	void zeroInitialiseMemoryArray(ArrayType const& _type);
 
 	/// Copies full 32 byte words in memory (regions cannot overlap), i.e. may copy more than length.
+	/// Length can be zero, in this case, it copies nothing.
 	/// Stack pre: <size> <target> <source>
 	/// Stack post:
 	void memoryCopy32();
